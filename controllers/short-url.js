@@ -25,15 +25,13 @@ const shortURL = (req, res) => {
 };
 
 const urlShortener = (originalURL, hostname) => {
-  const url = new Url(originalURL);
+  const url = new Url(originalURL, true);
 
   url.nextCount(function(err, count) {
-    url.short_url = `http://${hostname}/${count}`;
+    url.set("short_url", `http://${hostname}/${count}`);
   });
 
-  var saveURL = url.save();
-
-  return saveURL;
+  return url.save();
 };
 
 const getURL = (req, res) => {
