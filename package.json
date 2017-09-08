@@ -1,0 +1,26 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "url shortener microservice",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsuarezlogans/url-shortener.git"
+  },
+  "author": "Danny Suarez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dsuarezlogans/url-shortener/issues"
+  },
+  "homepage": "https://github.com/dsuarezlogans/url-shortener#readme",
+  "dependencies": {
+    "express": "^4.15.4",
+    "mongoose": "^4.11.10",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-validators": "^0.1.0"
+  }
+}
