@@ -1,22 +1,22 @@
-"use strict";
+'use strict';
 
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const app = require("./app");
+const app = require('./app');
 
 const PORT = process.env.PORT || 3000;
-const MONGODB = process.env.DB_HOST || "mongodb://localhost:27017/urlshorts";
+const config = require('./config');
 
 mongoose.Promise = global.Promise;
 
 mongoose
-  .connect(MONGODB, {
+  .connect(config.MONGODB_URI, {
     useMongoClient: true,
     promiseLibrary: global.Promise
   })
   .then(result => {
-    console.log("Mongo Db Connected successfully.");
+    console.log('Mongo Db Connected successfully.');
   })
   .catch(error => console.error(error));
 
-app.listen(PORT, () => console.log("Web server listen in port:", PORT));
+app.listen(PORT, () => console.log('Web server listen in port:', PORT));

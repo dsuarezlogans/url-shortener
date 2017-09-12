@@ -1,13 +1,19 @@
-"use strict";
+'use strict';
 
-const express = require("express");
+const express = require('express');
 
-const Ctrl = require("./controllers/short-url");
+const Ctrl = require('./controllers/short-url');
 
 const app = express();
 
-app.get("/new/*", Ctrl.shortURL);
+app.use(express.static(`${__dirname}/public`));
 
-app.get("/:code", Ctrl.getURL);
+app.get('/', (req, res) => {
+  res.sendFile('index.html');
+});
+
+app.get('/new/*', Ctrl.shortURL);
+
+app.get('/:code', Ctrl.getURL);
 
 module.exports = app;

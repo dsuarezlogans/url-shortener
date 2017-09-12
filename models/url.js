@@ -1,10 +1,9 @@
-const mongoose = require("mongoose");
-const validators = require("mongoose-validators");
-const autoIncrement = require("mongoose-auto-increment");
+const mongoose = require('mongoose');
+const validators = require('mongoose-validators');
+const autoIncrement = require('mongoose-auto-increment');
+const config = require('../config');
 
-var connection = mongoose.createConnection(
-  "mongodb://localhost:27017/urlshorts"
-);
+var connection = mongoose.createConnection(config.MONGODB_URI);
 
 autoIncrement.initialize(connection);
 
@@ -15,11 +14,11 @@ const URLSchema = new mongoose.Schema({
   },
   original_url: {
     type: String,
-    required: [true, "NO_URL"],
+    required: [true, 'NO_URL'],
     validate: validators.isURL({
-      message: "NO_URL",
+      message: 'NO_URL',
       require_protocol: true,
-      protocols: ["http", "https"]
+      protocols: ['http', 'https']
     })
   },
   short_url: {
@@ -28,9 +27,9 @@ const URLSchema = new mongoose.Schema({
 });
 
 URLSchema.plugin(autoIncrement.plugin, {
-  model: "Url",
+  model: 'Url',
   startAt: 100,
-  field: "code"
+  field: 'code'
 });
 
-module.exports = mongoose.model("Url", URLSchema);
+module.exports = mongoose.model('Url', URLSchema);
